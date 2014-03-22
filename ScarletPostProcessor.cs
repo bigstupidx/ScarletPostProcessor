@@ -26,12 +26,15 @@ public class ScarletPostProcessor {
 
 		// Looking for CLANG_CXX_LIBRARY = "libstdc++";
 		string insertKeyword = "CLANG_CXX_LIBRARY";
+		string foundKeyword = "CLANG_ENABLE_MODULES";
 		string modulesFlag = "				CLANG_ENABLE_MODULES = YES;";
 
 		List<string> lines = new List<string>();
 			
 		foreach (string str in File.ReadAllLines(pbxproj)) {
-			lines.Add(str);
+			if (!str.Contains(foundKeyword)) { 
+				lines.Add(str);
+			}
 			if (str.Contains(insertKeyword)) {
 				lines.Add(modulesFlag);
 			}
