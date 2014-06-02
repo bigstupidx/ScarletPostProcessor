@@ -24,9 +24,9 @@ public class ScarletPostProcessor {
 		UnityEngine.Debug.Log("ScarletPostProcessor: Enabling Objective-C modules");
 		string pbxproj = path + "/Unity-iPhone.xcodeproj/project.pbxproj";
 
-		// Looking for CLANG_CXX_LIBRARY = "libstdc++";
-		string insertKeyword = "CLANG_CXX_LIBRARY";
-		string foundKeyword = "CLANG_ENABLE_MODULES";
+		// Looking for the buildSettings sections of the pbxproj
+		string insertKeyword = "buildSettings = {";
+		string foundKeyword = "CLANG_ENABLE_MODULES"; // for checking if it's already inserted
 		string modulesFlag = "				CLANG_ENABLE_MODULES = YES;";
 
 		List<string> lines = new List<string>();
